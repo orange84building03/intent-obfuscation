@@ -23,9 +23,9 @@ to [reproduce the R environment](https://rstudio.github.io/renv/articles/renv.ht
 
 Two sample datasets and images are included with the code in `./sample`. To browse and download all datasets and
 attacked images, please go to
-the [anonymized google cloud storage bucket](https://console.cloud.google.com/storage/browser/icml-review)
-named `icml-review` (it's public though may still need to sign in). You can browse the bucket online or even
-download the 135 GB bucket entirely or partially
+the [anonymized google cloud storage bucket](https://console.cloud.google.com/storage/browser/intent-obfuscation)
+named `intent-obfuscation` (it's public though may still need to sign in). You can browse the bucket online or even
+download the 82 GB bucket entirely or partially
 using [these instructions online](https://cloud.google.com/storage/docs/access-public-data).
 
 On the bucket, the attacked images are stored in `./data/random/images` and `./data/arbitrary/images`, grouped by
@@ -88,8 +88,8 @@ commands to reproduce the experiments (including the random seeds) are included 
 `USER_DIR` is the conda location and `PROJECT_DIR` is the project directory.
 
 ```bash
-USER_DIR=/scratch/zl430
-PROJECT_DIR=/projects/f_ps848_1/zhaobin/adversarial
+USER_DIR=[replace]
+PROJECT_DIR=[replace]
 ```
 
 ## Patch mmdetection
@@ -221,8 +221,8 @@ Check mongodb:
 Adapt as needed:
 
 ```bash
-USER_DIR=/scratch/zl430
-PROJECT_DIR=/projects/f_ps848_1/zhaobin/adversarial
+USER_DIR=[replace]
+PROJECT_DIR=[replace]
 
 cd $PROJECT_DIR
 
