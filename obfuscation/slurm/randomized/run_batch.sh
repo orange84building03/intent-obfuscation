@@ -2,8 +2,7 @@
 
 #SBATCH --job-name=randomized
 
-#SBATCH --array=395-700
-###SBATCH --array=1-2400
+#SBATCH --array=1-2400
 
 ###SBATCH --partition=price
 #SBATCH --partition=p_ps848

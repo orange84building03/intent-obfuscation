@@ -2,7 +2,7 @@
 
 #SBATCH --job-name=arbitrary
 
-#SBATCH --array=1-1000
+#SBATCH --array=1-1920
 
 ###SBATCH --partition=price
 #SBATCH --partition=p_ps848
