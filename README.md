@@ -2,8 +2,7 @@
 
 You
 can [reproduce graphs and tables](#reproduce-graphs-and-tables), [download datasets and images](#download-datasets-and-images), [visualize attacked datasets](#visualize-attacked-datasets),
-or [replicate experiments](#replicate-experiments): the randomized attack in the paper is named `random` and the
-deliberate attack is named `arbitrary` below.
+or [replicate experiments](#replicate-experiments): the randomized attack in the paper is named `random`, the deliberate attacks selecting easier targets and perturbing arbitrary regions are named `biased` and `arbitrary` respectively.
 
 I have anonymized all directories. Home directory is `$USER_DIR`, and the working directory
 is `$PROJECT_DIR/obfuscation`, i.e. all relative paths begin there unless there is an explicit `cd` command. Replace
@@ -11,9 +10,9 @@ these stand-in names with your own directories to run the commands.
 
 ## Reproduce graphs and tables
 
-The scripts store the attack trend as `*_trend.csv` and sample bboxes as `*_bboxes.parquet` in `./data/random/results`
-and `./data/arbitrary/results`. Knitting `./analysis/random.Rmd` and `./analysis/arbitrary.Rmd` will produce the
-graphs (in `./analysis/rmd_imgs/`) and tables (in `./analysis/random.tex` and `./analysis/arbitrary.tex`). Hypotheses
+The code store the general trend as `*.csv` and individual results as `*.parquet` in `./data/random/results`, `./data/biased/results`
+and `./data/arbitrary/results`. Knitting `./analysis/random.Rmd`, `./analysis/biased.Rmd`  and `./analysis/arbitrary.Rmd` will produce the
+graphs (in `./analysis/rmd_imgs/`) and tables (in `./analysis/random.tex`, `./analysis/biased.tex`, and `./analysis/arbitrary.tex`). Hypotheses
 and models are produced by knitting `./analysis/summary.Rmd` (to `./analysis/summary.tex`). Fully knitted respective
 documents are
 included in `./analysis`. You can use `renv::restore()`
@@ -61,8 +60,7 @@ Minimal code to visualize a dataset (on the original images):
    # https://docs.voxel51.com/user_guide/dataset_creation/datasets.html#fiftyonedataset
    import fiftyone as fo
 
-   # dataset_dir = "obfuscation/data/randomized/datasets/itr_50_norm_None_repeat_9_untarget_bbox_yolo_v3_coco"
-   dataset_dir = "conf_None_dist_0.25_size_0.25_norm_None_repeat_2_untarget_bbox_retinanet_coco"
+   dataset_dir = "obfuscation/sample/randomized/datasets/itr_200_norm_None_repeat_20_vanish_bbox_yolo_v3_coco"
    
    dataset = fo.Dataset.from_dir(
        dataset_dir=dataset_dir,

@@ -57,7 +57,7 @@ round_table <- function(df, digits = 3) {
   df |> mutate(across(where(is.numeric), ~ round(., 3)))
 }
 
-norm_cap <- function(norm) {
+norm_axy <- function(norm) {
   if (!is.na(as.double(norm))) {
     glue("with {norm} max-norm")
   } else {
@@ -222,7 +222,10 @@ graph_attr <- function(data, variable, x_label, gg_options = NULL) {
   }
 }
 
-bold_tex <- function(text) {
+bold_tex <- function(text, norm) {
+  if (!is.na(as.double(norm))) {
+    text <- glue("{text} even with {norm} max-norm")
+  }
   glue("\\textbf{{{text}:}} ")
 }
 

@@ -5,7 +5,7 @@ output:
     keep_tex: true
   latex_fragment: default
 params:
-  data: "/Users/zbli/Documents/Documents - ZhaoBin’s MacBook Pro/repo/adversarial/adversarial data" # directory where data is stored
+  data: "data" # directory where data is stored
   simulation: "arbitrary" # simulation name
   norm: "None" # max norm constraint is None or 0.05
   fragment: true # pdf: change to `false` 
@@ -115,10 +115,10 @@ ext_sig(reg_est, "both", "bbox_dist:bbox_len")
 ```
 
 ```{r arbitrary_trend_table, include=TRUE}
-dist_lab <- "Perturb-Target Distance (relative to image width/height)"
-len_lab <- "Perturb Box Length (relative to image width/height)"
+dist_lab <- "Perturb-Target Distance"
+len_lab <- "Perturb Box Length"
 
-pred_name <- glue("{dist_lab} and {len_lab}")
+pred_name <- glue("{dist_lab} and {len_lab}, both relative to image width or height,")
 main_pt <- glue("longer {len_lab} or shorter {dist_lab} cause success rates to significantly increase for all model and attack combinations, except for {len_lab} in untargeted attack on Cascade R-CNN. The interaction terms, even when significant, are negligibly close to 0")
 
 print_statistics(reg_est, table_caption(pred_name, main_pt, "deliberate"))
@@ -143,7 +143,7 @@ reg_pred <- reg_mod |>
 ```
 
 ```{r arbitrary_trend_caption}
-arb_cap <- glue("{bold_tex('Perturbing an arbitrary region obfuscates intent with increased success for all models and attacks')} We implement intent obfuscating attack by perturbing an arbitrary non-overlapping square region to disrupt a randomly selected target object at various lengths and distances. The binned summaries and regression trendlines graph success proportion against {str_to_lower(pred_name)} in the deliberate attack experiment. {err_cap} and every point aggregates success over 200 images. The deliberate attack multiplies success as compared to the randomized attack (Figure \\ref{{fig:success_trend_graph}}), especially at close {str_to_lower(dist_lab)} and large {str_to_lower(len_lab)}. Full details are given in Section \\ref{{sec:del_arb}}.")
+arb_cap <- glue("{bold_tex('Perturbing an arbitrary region obfuscates intent with increased success for all models and attacks', params$norm)} We implement intent obfuscating attack by perturbing an arbitrary non-overlapping square region to disrupt a randomly selected target object at various lengths and distances. The binned summaries and regression trendlines graph success proportion against {str_to_lower(pred_name)} in the deliberate attack experiment. {err_cap} and every point aggregates success over 200 images. The deliberate attack multiplies success as compared to the randomized attack (Figure \\ref{{fig:success_trend_graph}}), especially at close {str_to_lower(dist_lab)} and large {str_to_lower(len_lab)}, both relative to image width or height. Full details are given in Section \\ref{{sec:del_arb}}.")
 
 arb_cap
 ```
@@ -161,7 +161,7 @@ g <- g + geom_ribbon(
 ) +
   geom_line(data = reg_pred)
 
-g + labs(x = dist_lab, y = glue("p(Success) {norm_cap(params$norm)}")) +
+g + labs(x = dist_lab, y = glue("p(Success) {norm_axy(params$norm)}")) +
   scale_x_continuous(breaks = unique(success_expanded_data$bbox_dist), labels = scales::label_percent()) +
   scale_color_viridis_c(name = len_lab, breaks = unique(success_expanded_data$bbox_len), labels = scales::label_percent())
 ```
@@ -206,10 +206,10 @@ ext_sig(reg_est, "both", "bbox_dist:bbox_size_perturb")
 ```
 
 ```{r rand_arb_compare_table, include=TRUE}
-dist_lab <- "Perturb-Target Distance (relative to image width/height)"
-size_lab <- "Perturb Box Size (relative to image width/height)"
+dist_lab <- "Perturb-Target Distance"
+size_lab <- "Perturb Box Size"
 
-pred_name <- glue("object (versus non-object), with {dist_lab} and {size_lab} as covariates")
+pred_name <- glue("object (versus non-object), with {dist_lab} and {size_lab} as covariates, both relative to image width or height")
 main_pt <- "perturbing an object (in the randomized attack) rather than a non-object (in the deliberate attack) significantly decreases success rates for all model and attack combinations, after controlling for perturb sizes and perturb-target distances"
 
 tab_cap <- glue("We combined the data in the randomized and deliberate attack experiments to run a logistic model regressing success against {str_to_lower(pred_name)}. The ``object'' term codes object as 1 and non-object as 0. {str_to_sentence(main_pt)}. Table headers are explained in Appendix \\ref{{app:tab_hdr}}.")
