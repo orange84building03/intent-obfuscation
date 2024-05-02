@@ -226,7 +226,7 @@ bold_tex <- function(text) {
   glue("\\textbf{{{text}:}} ")
 }
 
-err_cap <- "Errors are 95\\% confidence intervals. "
+err_cap <- "Errors are 95\\% confidence intervals"
 
 bin_sum <- "Bins are split into quantiles. "
 

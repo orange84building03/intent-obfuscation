@@ -68,7 +68,7 @@ success_raw_data <- get_data(success_fnames, read_csv) |>
 ```{r success_trend_caption}
 itr_lab <- "Attack Iterations"
 
-cap <- glue("{bold_tex('Intent obfuscating attack is feasible for all models and attacks')} We conduct a randomized experiment by resampling COCO images, and within those images randomly sampling correctly predicted target and perturb objects. Then we distort the perturb objects to disrupt the target objects varying the attack iterations. The binned summaries and regression trendlines graph success proportion against {str_to_lower(itr_lab)} in the randomized attack experiment. {err_cap} and every point aggregates success over 4,000 images. Targeted vanishing and mislabeling attacks obtain significantly greater success on the 1-stage YOLOv3 and SSD than the 2-stage Faster R-CNN and Cascade R-CNN detectors. However, the 1-stage RetinaNet is as resilient as the 2-stage detectors. Additionally, targeted attacks are significantly more successful than untargeted attacks on YOLOv3 and SSD, but the pattern does not exist for RetinaNet, Faster R-CNN, and Cascade R-CNN. Within targeted attacks, vanishing achieves significantly greater success than mislabeling attack on all models except YOLOv3. Moreover, success rates significantly increase with larger attack iterations. Significance is determined at $\\alpha < 0.05$ using a Wald z-test on the logistic estimates. Full details are given in Section \\ref{{sec:rand_att}}.")
+cap <- glue("{bold_tex('Intent obfuscating attack is feasible for all models and attacks')} We conduct a randomized experiment by resampling COCO images, and within those images randomly sampling correctly predicted target and perturb objects. Then we distort the perturb objects to disrupt the target objects varying the attack iterations. The binned summaries and regression trendlines graph success proportion against {str_to_lower(itr_lab)} in the randomized attack experiment. {err_cap} and every point aggregates success over 4,000 images. Targeted vanishing and mislabeling attacks obtain significantly greater success on the 1-stage YOLOv3 and SSD than the 2-stage Faster R-CNN and Cascade R-CNN detectors. However, the 1-stage RetinaNet is as resilient as the 2-stage detectors. Moreover, success rates significantly increase with larger attack iterations. Significance is determined at $\\alpha < 0.05$ using a Wald z-test on the logistic estimates. Full details are given in Section \\ref{{sec:rand_att}}.")
 
 cap
 ```
@@ -145,7 +145,7 @@ ext_sig(reg_est)
 ```
 
 ```{r target_untarget_vanish_mislabel_table, include = TRUE}
-cap <- table_caption("attacks, split by detection models", "Targeted attacks obtain higher success than untargeted attacks on YOLOv3 only; Within targeted attacks, vanishing attacks obtain higher success than mislabeling attacks on all models.")
+cap <- table_caption("attacks, split by detection models", "Targeted attacks obtain higher success than untargeted attacks on YOLOv3 only. Within targeted attacks, vanishing attacks obtain higher success than mislabeling attacks on all models")
 
 print_statistics(reg_est, cap)
 ```
@@ -289,7 +289,7 @@ dist_lab <- "Perturb-Target Distance (relative to image width/height)"
 size_lab <- "Perturb Box Size (relative to image width/height)"
 
 pred_name <- glue("{dist_lab} and {size_lab}")
-main_pt <- "Larger perturb objects significantly increase success rates for all models and attacks, except for mislabeling attack on Faster R-CNN, after controlling for perturb-target distances; Shorter perturb-target distances significantly increase success rates for all models and attacks, after controlling for perturb object sizes"
+main_pt <- "Larger perturb objects significantly increase success rates for all models and attacks, except for mislabeling attack on Faster R-CNN, after controlling for perturb-target distances. Shorter perturb-target distances significantly increase success rates for all models and attacks, after controlling for perturb object sizes"
 
 cap <- glue(
   "{bold_tex(main_pt)} The binned summaries",

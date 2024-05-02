@@ -5,7 +5,7 @@ output:
     keep_tex: true
   latex_fragment: default
 params:
-  data: "data" # directory where data is stored
+  data: "/Users/zbli/Documents/Documents - ZhaoBin’s MacBook Pro/repo/adversarial/adversarial data" # directory where data is stored
   simulation: "arbitrary" # simulation name
   norm: "None" # max norm constraint is None or 0.05
   fragment: true # pdf: change to `false` 
@@ -143,7 +143,7 @@ reg_pred <- reg_mod |>
 ```
 
 ```{r arbitrary_trend_caption}
-arb_cap <- glue("{bold_tex('A deliberate attack obfuscates intent with increased success for all models and attacks')} We implement intent obfuscating attack by perturbing an arbitrary non-overlapping square region to disrupt a randomly selected target object at various lengths and distances. The binned summaries and regression trendlines graph success proportion against {str_to_lower(pred_name)} in the deliberate attack experiment. {err_cap} and every point aggregates success over 200 images. The deliberate attack multiplies success as compared to the randomized attack (Figure \\ref{{fig:success_trend_graph}}), especially at close {str_to_lower(dist_lab)} and large {str_to_lower(len_lab)}. Full details are given in Section \\ref{{sec:del_arb}}.")
+arb_cap <- glue("{bold_tex('Perturbing an arbitrary region obfuscates intent with increased success for all models and attacks')} We implement intent obfuscating attack by perturbing an arbitrary non-overlapping square region to disrupt a randomly selected target object at various lengths and distances. The binned summaries and regression trendlines graph success proportion against {str_to_lower(pred_name)} in the deliberate attack experiment. {err_cap} and every point aggregates success over 200 images. The deliberate attack multiplies success as compared to the randomized attack (Figure \\ref{{fig:success_trend_graph}}), especially at close {str_to_lower(dist_lab)} and large {str_to_lower(len_lab)}. Full details are given in Section \\ref{{sec:del_arb}}.")
 
 arb_cap
 ```

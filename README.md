@@ -61,7 +61,8 @@ Minimal code to visualize a dataset (on the original images):
    # https://docs.voxel51.com/user_guide/dataset_creation/datasets.html#fiftyonedataset
    import fiftyone as fo
 
-   dataset_dir = "obfuscation/data/randomized/datasets/itr_50_norm_None_repeat_9_untarget_bbox_yolo_v3_coco"
+   # dataset_dir = "obfuscation/data/randomized/datasets/itr_50_norm_None_repeat_9_untarget_bbox_yolo_v3_coco"
+   dataset_dir = "conf_None_dist_0.25_size_0.25_norm_None_repeat_2_untarget_bbox_retinanet_coco"
    
    dataset = fo.Dataset.from_dir(
        dataset_dir=dataset_dir,
